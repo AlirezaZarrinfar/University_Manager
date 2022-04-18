@@ -73,7 +73,18 @@ void ShowStudent (int stdNum)
     CurrentStd = FirstStd;
     while(CurrentStd->Number != stdNum)
     {
+        if (CurrentStd->next == NULL)
+        {
+            CurrentStd = NULL;
+            break;
+        }
         CurrentStd = CurrentStd->next;
+    }
+    if (CurrentStd == NULL)
+    {
+        cout << "Student not found !! " << endl;
+        EnterStudentNumber();
+        return;
     }
     FirstSub = CurrentStd->subjects;
     CurrentSub = FirstSub;
@@ -162,7 +173,18 @@ void DeleteSubject ()
     }
     while(CurrentSub->Number != id)
     {
+        if (CurrentSub->next == NULL)
+        {
+            CurrentSub = NULL;
+            break;
+        }
         CurrentSub = CurrentSub->next;
+    }
+    if (CurrentSub == NULL)
+    {
+        cout << "Lesson not found !!" << endl;
+        ShowMainMenu(stdNumber);
+        return;
     }
     int temp = (CurrentSub->Credit)*1000;
     if(CurrentSub == FirstSub)
